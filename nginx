@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# https://www.golinuxcloud.com/get-script-name-get-script-path-shell-script/#Get_script_path_in_shell_script
+
+docker-compose -f $(dirname $(readlink -f "$0"))/docker-compose.yml up
