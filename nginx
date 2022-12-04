@@ -2,4 +2,7 @@
 
 # https://www.golinuxcloud.com/get-script-name-get-script-path-shell-script/#Get_script_path_in_shell_script
 
-docker-compose -f $(dirname $(readlink -f "$0"))/docker-compose.yml up
+DOCKER_COMPOSE=$(dirname $(readlink -f "$0"))/docker-compose.yml
+
+docker-compose -f "$DOCKER_COMPOSE" up
+docker-compose -f "$DOCKER_COMPOSE" down
