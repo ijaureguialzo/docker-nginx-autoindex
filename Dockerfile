@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 RUN set -e \
-      && apk add --update --no-cache nginx
+      && apk add --update --no-cache nginx tzdata
 
 RUN set -eo pipefail \
       && grep -n -e $'^[ \t]*location / {$' /etc/nginx/http.d/default.conf \
@@ -10,6 +10,8 @@ RUN set -eo pipefail \
         | xargs -i sed -ie '{} s/return 404;$/autoindex on;/' /etc/nginx/http.d/default.conf \
       && sed -ie '/# Everything is a 404/d' /etc/nginx/http.d/default.conf \
       && rm -f /etc/nginx/http.d/default.confe
+
+RUN sed -ie 's/autoindex on;/autoindex_localtime on; autoindex on;/' /etc/nginx/http.d/default.conf
 
 RUN set -e \
       && ln -sf /dev/stdout /var/log/nginx/access.log \

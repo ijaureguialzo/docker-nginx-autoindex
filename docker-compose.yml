@@ -7,9 +7,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: dceoy/nginx-autoindex:latest
+    environment:
+      - TZ=Europe/Madrid
     ports:
-      - 80:80
+      - "80:80"
     volumes:
       - ${PWD}:/var/lib/nginx/html:ro
     entrypoint:
