@@ -1,6 +1,3 @@
----
-version: '3'
-
 services:
   nginx-autoindex:
     container_name: nginx-autoindex
